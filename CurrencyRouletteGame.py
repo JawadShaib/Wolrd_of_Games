@@ -23,8 +23,9 @@ def check_amount(amount, difficulty):
     return low <= amount <= high
 
 
-def play(difficulty):
+def play(difficulty) -> bool:
     print("welcome to Currency game !")
     amount = get_guess_from_user()
     res = check_amount(amount, difficulty)
     print(f"hey user you", res * "won" + (not res) * "lost")
+    return res

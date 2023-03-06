@@ -2,6 +2,7 @@ import random
 import time
 import Live
 import os
+import Utills as u
 
 
 def generate_sequence(diff):
@@ -10,8 +11,7 @@ def generate_sequence(diff):
     for i in range(diff):
         arr.append(random.randint(1, 101))
     print(arr)
-    time.sleep(0.7)
-    os.system("cls" if os.name == "nt" else "clear")
+    u.clear_screen()
     return arr
 
 
@@ -33,7 +33,8 @@ def is_list_equal(diff):
     return True
 
 
-def play(difficulty):
+def play(difficulty) -> bool:
     print("welcome to Memory Game !")
     res = is_list_equal(difficulty)
     print(f"hey user you", res * "won" + (not res) * "lost")
+    return res

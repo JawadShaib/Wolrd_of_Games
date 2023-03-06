@@ -22,7 +22,8 @@ def compare_results(difficulty):
         return True
 
 
-def play(difficulty):
+def play(difficulty) -> bool:
     print("welcome to Guess Game !")
     res = compare_results(difficulty)
     print(f"hey user you", res * "won" + (not res) * "lost")
+    return res

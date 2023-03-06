@@ -1,4 +1,5 @@
 import MemoryGame, CurrencyRouletteGame, GuessGame
+from Score import add_score
 
 
 def welcome() -> None:
@@ -45,8 +46,11 @@ def load_game():
                 continue
             else:
                 difficulty = get_diff()
-                GAMEOPTIONS[int(game_num)].play(difficulty)
+                status = GAMEOPTIONS[int(game_num)].play(difficulty)
+                if status:
+                    add_score(difficulty)
                 Enter = check_for_play_again()
+                
     print("till next time !")
 
 
