@@ -50,7 +50,7 @@ def load_game():
                 if status:
                     add_score(difficulty)
                 Enter = check_for_play_again()
-                
+
     print("till next time !")
 
 
