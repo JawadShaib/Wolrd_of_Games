@@ -14,7 +14,7 @@ def show_status():
             <title>Scores Game</title>
             </head>
             <body>
-            <h1>The score is <div id="score">{SCORE}</div></h1>
+            <h1>Score<div id="score">{SCORE}</div></h1>
             </body>
             </html>"""
             return current_status
