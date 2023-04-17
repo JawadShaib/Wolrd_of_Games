@@ -23,22 +23,22 @@ pipeline {
 
         stage('Run') {
             steps {
-                bat "docker run -d -p 80:8777 --name app-container ${DOCKER_IMAGE}"
+                bat "docker run -d -p 80:8777 --name app-container ${env.DOCKER_IMAGE}"
             }
         }
 
         stage('Test') {
             steps {
-                bat "docker exec app-container python e2e.py"
+                bat "python e2e.py"
             }
         }
 
         stage('Terminate Container and Push Docker Image to Docker Hub') {
             steps {
                 bat "docker rm -f app-container"
-                withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'DOCKERHUB_PASS', usernameVariable: 'DOCKERHUB_USER')]) {
-                    bat "docker login -u ${DOCKERHUB_USER} -p ${DOCKERHUB_PASS}"
-                    bat "docker push ${DOCKER_IMAGE}"
+                withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'DOCKERHUB_PASSWORD', usernameVariable: 'DOCKERHUB_USERNAME')]) {
+                    bat "docker login -u ${env.DOCKERHUB_USERNAME} -p ${env.DOCKERHUB_PASSWORD}"
+                    bat "docker push ${env.DOCKER_IMAGE}"
                 }
             }
         }
